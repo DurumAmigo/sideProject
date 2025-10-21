@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfby4qpat0ouy"]
+
+[ext_resource type="PackedScene" uid="uid://bluyjekyg5ivh" path="res://scenes/astronaut.tscn" id="1_1eu8g"]
+[ext_resource type="Texture2D" uid="uid://b5tpo4pp7lyi7" path="res://assets/bg.png" id="1_aoy30"]
+[ext_resource type="Script" uid="uid://bc8xs7cw5nol5" path="res://scripts/prueba.gd" id="1_j5h0l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2t57l"]
+size = Vector2(320, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aoy30"]
+size = Vector2(180, 20)
+
+[node name="Prueba" type="Node"]
+script = ExtResource("1_j5h0l")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Terrain" type="Node2D" parent="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="Node2D/Terrain"]
+position = Vector2(160, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Terrain/Floor"]
+shape = SubResource("RectangleShape2D_2t57l")
+
+[node name="Wall" type="StaticBody2D" parent="Node2D/Terrain"]
+position = Vector2(-10, 90)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Terrain/Wall"]
+shape = SubResource("RectangleShape2D_aoy30")
+
+[node name="Wall2" type="StaticBody2D" parent="Node2D/Terrain"]
+position = Vector2(330, 90)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Terrain/Wall2"]
+shape = SubResource("RectangleShape2D_aoy30")
+
+[node name="bg" type="Sprite2D" parent="Node2D/Terrain"]
+position = Vector2(160, 90)
+texture = ExtResource("1_aoy30")
+
+[node name="Astronaut" parent="Node2D" instance=ExtResource("1_1eu8g")]
+position = Vector2(160, 110)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 90)
